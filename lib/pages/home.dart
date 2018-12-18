@@ -30,7 +30,8 @@ class HomePageState extends State<HomePage> {
           return Text("error:${snapshot.error}");
         }
         return new Container(
-          color: new Color.fromRGBO(244, 255, 255, 1.0),
+          //color: new Color.fromRGBO(244, 245, 245, 1.0),
+          color: new Color.fromRGBO(0, 0, 0, 1.0),
         );
       },
     );
@@ -52,7 +53,7 @@ class CreatePageState extends State<CreatePage>
       length: widget.tabList.length,
       child: new Scaffold(
         appBar: new AppBar(
-          backgroundColor: new Color.fromRGBO(244, 245, 245, 1.0),
+          backgroundColor: new Color.fromRGBO(0, 0, 0, 1.0),
           automaticallyImplyLeading: false,
           titleSpacing: 0.0,
           title: new TabBar(
@@ -115,13 +116,10 @@ class ArticleListState extends State<ArticleLists> {
       future: getArticles(category: widget.categories['id']),
       builder: (context,snapshot) {
         if(snapshot.hasData) {
-          articleList = snapshot.data['d']['entrylist'];
-          print('articleList:${articleList}');
-          print('length:${articleList.length}');
+          articleList = snapshot.data['d']['entrylist'];          
           return new ListView.builder(
             itemCount: articleList.length,
-            itemBuilder: (context,int index){
-              print('index:${index}');
+            itemBuilder: (context,int index){              
               var item = articleList[index];
               return createItem(item);
             },
