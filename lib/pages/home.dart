@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../config/httpHeaders.dart';
+import '../pages/articleDetail.dart';
 class HomePage extends StatefulWidget{
   @override
   HomePageState createState() => new HomePageState();
@@ -143,7 +144,8 @@ class ArticleListState extends State<ArticleLists> {
       child: new FlatButton(
         padding: new EdgeInsets.all(0.0),
         onPressed: (){
-          print('item press');
+          //详情页
+          Navigator.push(context, new CupertinoPageRoute(builder: (context) => ArticleDetail(objectId:objectId,articleInfo:articleInfo)));
         },
         child: new Column(
             children: <Widget>[  
