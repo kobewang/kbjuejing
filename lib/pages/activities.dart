@@ -107,7 +107,28 @@ class ActivitiesListsState extends State<ActivitiesLists> {
   Widget createItem(itemInfo) {
     return new Container(
       margin: new EdgeInsets.only(top: 10.0),
-      child: new Column(),
+      child: new Column(
+        children: <Widget>[
+          new Image.network(itemInfo['screenshot']),
+          new Container(
+            margin: new EdgeInsets.only(top:10.0),
+            color: Colors.white,
+            padding: new EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 30.0),
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Text(itemInfo['title'],style: new TextStyle(fontWeight:FontWeight.bold,height:1.0)),
+                new Row(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.center,children: <Widget>[new Icon(Icons.date_range),new Padding(padding: new EdgeInsets.only(right: 5.0)),new Text(itemInfo['endTime'])],),
+                new Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,crossAxisAlignment: CrossAxisAlignment.center,children: <Widget>[
+                  new Row(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.center,children: <Widget>[new Icon(Icons.location_on),new Padding(padding: new EdgeInsets.only(right: 5.0)),new Text(itemInfo['city'])],),
+                  new ActionChip(label: new Text('报名参加',style: new TextStyle(color: Colors.white)), onPressed: (){return null;},backgroundColor: Colors.blue,)
+                ],)
+              ],
+
+            ),
+          )
+        ],
+      ),
     );
   }
 
