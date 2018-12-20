@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/indexpage.dart';
+import 'pages/search.dart';
+import 'pages/activities.dart';
 
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget{
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget{
         )
       ),
       routes: <String,WidgetBuilder>{
+        '/search': (BuildContext context) => SearchPage(),
+        '/activities':(BuildContext context) => ActivitesPage()
         //'/books':(BuildContext context) => BookPage()
       },
     );

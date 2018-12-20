@@ -112,7 +112,32 @@ class DiscoveryPageState extends State<DiscoveryPage>{
           },childCount: hotArticles==null?0:hotArticles.length),
         )
       ],
-
+    );    
+  }
+  Widget createItem(itemInfo) {
+    var publicTime= itemInfo['createdAt'];
+    return new Container(
+      padding: new EdgeInsets.only(top:10.0, bottom: 10.0),
+      decoration: new BoxDecoration(color: Colors.white,border: new Border(bottom: new BorderSide(width: 0.2,color: Colors.grey))),
+      child: new FlatButton(
+        onPressed: null,
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            new Expanded(
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Text(itemInfo['title'],textAlign: TextAlign.left,style: new TextStyle(color: Colors.black),maxLines: 2,overflow: TextOverflow.ellipsis,),//文本溢出省略
+                  new Text('${itemInfo['collectionCount']}人喜欢 - ${itemInfo['user']['username']} - $publicTime',textAlign: TextAlign.left,style: new TextStyle(color: Colors.grey,fontSize: 12.0),softWrap: true,)
+                ],
+              ),
+            ),
+            itemInfo['screenshot']!=null? new Image.network(itemInfo['screenshot'],width: 100.0,):new Container(width: 0.0,height: 0.0,)
+          ],
+        ),
+      ),
     );
   }
 }

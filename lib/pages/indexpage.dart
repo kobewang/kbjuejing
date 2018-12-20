@@ -15,6 +15,7 @@ class IndexPageState extends State<IndexPage> {
       icon: new Icon(CupertinoIcons.home),
       title: new Text('首页'),
     ),
+
     new BottomNavigationBarItem(
       icon: new Icon(CupertinoIcons.conversation_bubble),
       title: new Text('沸点'),
