@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 import '../config/httpHeaders.dart';
 class ActivitiesPage extends StatefulWidget{
@@ -9,17 +10,22 @@ class ActivitiesPage extends StatefulWidget{
   ActivitiesPageState createState()=> new  ActivitiesPageState();
 }
 class ActivitiesPageState extends State<ActivitiesPage> {
-  Future getCities() {
-    Dio dio=new Dio();
-    return  dio.get(Uri.encodeFull('https://event-storage-api-ms.juejin.im/v1/getCityList?uid=&client_id=&token=&src=web'));
+  Future getCities() async{
+    final response = await http.get(Uri.encodeFull('https://event-storage-api-ms.juejin.im/v1/getCityList?uid=&client_id=&token=&src=web'));
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw  Exception('Failed to load data');
+    }
+    
   }
   @override
   Widget build(BuildContext context){
     return new FutureBuilder(
       future: getCities(),
       builder: (context, snapshot){
-        if (snapshot.hasData) {
-          var tabList=snapshot.data['d'];
+        if (snapshot.hasData) {          
+          var tabList= snapshot.data['d'];
           return new CreatePage(tabList:tabList);
         } else if (snapshot.hasError) {
           return Text('error:${snapshot.error}');
@@ -73,10 +79,15 @@ class ActivitiesLists extends StatefulWidget {
 }
 class ActivitiesListsState extends State<ActivitiesLists> {
   List activitiesList;
-  Future getActivities({int pageSize =20, int pageNum=1,String cityAlias = '', String orderType = 'startTime'}) {
-    Dio dio =new Dio();
-    return dio.get(Uri.encodeFull(
+  Future getActivities({int pageSize =20, int pageNum=1,String cityAlias = '', String orderType = 'startTime'}) async {
+    
+    final response = await http.get(Uri.encodeFull(
         'https://event-storage-api-ms.juejin.im/v2/getEventList?uid=&client_id=&token=&src=${httpHeaders['X-Juejin-Src']}&orderType=$orderType&cityAlias=$cityAlias&pageNum=$pageNum&pageSize=$pageSize'));
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      return Exception('Failed to  load data');
+    }
      
   }
   @override
@@ -85,7 +96,7 @@ class ActivitiesListsState extends State<ActivitiesLists> {
       future: getActivities(cityAlias: widget.categories['cityAlias']),
       builder: (context,snapshot) {
         if (snapshot.hasData) {
-          var  activitiesList = json.decode(snapshot.data['d']);
+          var  activitiesList = snapshot.data['d'];
           return new ListView.builder(
             itemCount: activitiesList.length,
             itemBuilder: (context,index){

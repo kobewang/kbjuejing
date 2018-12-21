@@ -4,6 +4,7 @@ import '../pages/home.dart';
 import '../pages/hot.dart';
 import '../pages/discovery.dart';
 import '../pages/mine.dart';
+import '../pages/signin.dart';
 class IndexPage extends StatefulWidget{
   @override
   createState() => new IndexPageState();
@@ -34,7 +35,8 @@ class IndexPageState extends State<IndexPage> {
     //new HotPage(),
     new HotPage(),
     new DiscoveryPage(),
-    new MinePage()
+    //new MinePage()
+    new SignInPage()
   ];
   int currentIndex=0;
   var currentPage;
