@@ -128,14 +128,31 @@ class MinePageState extends State<MinePage> {
                     ),
                     child: new ListTile(
                       leading: new Icon(Icons.insert_drive_file),
-                      title: new Text('意见反馈'),
-                      subtitle: new Container(width: 0.0, height: 0.0,),
+                      title: new Text('意见反馈'),                      
+                      trailing: new Icon(Icons.keyboard_arrow_right),
+                      onTap: (){},
+                    ),
+                  )
+                ],
+              ),
+               new Column(
+                children: <Widget>[
+                  new  Container(
+                    margin: new EdgeInsets.only(top: 15.0),
+                    decoration: new BoxDecoration(
+                      color: Colors.white,
+                       border: new Border(bottom: new BorderSide(width: 0.2,color: new Color.fromRGBO(215,217, 220 , 1.0)))
+                    ),
+                    child: new ListTile(
+                      leading: new Icon(Icons.insert_drive_file),
+                      title: new Text('设置'),                      
                       trailing: new Icon(Icons.keyboard_arrow_right),
                       onTap: (){},
                     ),
                   )
                 ],
               )
+
 
             ],
           )
