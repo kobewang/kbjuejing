@@ -33,10 +33,11 @@ class IndexPageState extends State<IndexPage> {
   final List tabBodies=[
     new HomePage(),
     //new HotPage(),
-    new HotPage(),
+    //new HotPage(),
+    new SignInPage(),
     new DiscoveryPage(),
-    //new MinePage()
-    new SignInPage()
+    new MinePage()
+    //
   ];
   int currentIndex=0;
   var currentPage;
